@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Class Attendance</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f3f3f3;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"], input[type="date"], textarea, input[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    textarea {
+      resize: vertical;
+      height: 80px;
+    }
+
+    input[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+    }
+
+    #attendance-list {
+      margin-top: 20px;
+    }
+
+    .list-item {
+      background-color: #f9f9f9;
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Online Class Attendance</h1>
+
+    <div id="attendance-form">
+      <div class="form-group">
+        <label for="student-name">Student Name</label>
+        <input type="text" id="student-name" placeholder="Enter student name">
+      </div>
+
+      <div class="form-group">
+        <label for="date">Date</label>
+        <input type="date" id="date">
+      </div>
+
+      <div class="form-group">
+        <label for="reason">Reason for Absence</label>
+        <textarea id="reason" placeholder="Enter reason for absence"></textarea>
+      </div>
+
+      <div class="form-group">
+        <input type="submit" value="Submit" onclick="submitAttendance()">
+      </div>
+    </div>
+
+    <h2>Attendance List:</h2>
+    <ul id="attendance-list"></ul>
+  </div>
+
+  <!-- JavaScript code -->
+  <script>
+    function submitAttendance() {
+      var studentName = document.getElementById("student-name").value;
+      var date = document.getElementById("date").value;
+      var reason = document.getElementById("reason").value;
+
+      if (studentName.trim() === "" || date === "" || reason.trim() === "") {
+        alert("Please fill in all fields.");
+        return;
+      }
+
+      var attendanceList = document.getElementById("attendance-list");
+      var listItem = document.createElement("li");
+      listItem.setAttribute("class", "list-item");
+      listItem.innerHTML = "<strong>" + studentName + "</strong> - " + date + "<br>Reason: " + reason;
+      attendanceList.appendChild(listItem);
+
+      document.getElementById("student-name").value = "";
+      document.getElementById("date").value = "";
+      document.getElementById("reason").value = "";
+    }
+  </script>
+</body>
+</html>
